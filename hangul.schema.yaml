@@ -1,0 +1,116 @@
+# Rime schema
+# encoding: utf-8
+#
+# Use Korean Hangul to Write Chinese Mandarin! 한국한자음으로 중국어를 입력하는 가장 간단한 Rime 수입방안
+#
+
+schema:
+  schema_id: hangul    # 이 ID가 파일명의 .schema.yaml 의 앞부분과 상동하도록 주의
+  name: 도한글        # (방안메뉴) 안에 표시될 것
+  version: "0.9"        # 문자열에 음수아닌 정수나 소수. 예) "1.2.3"
+  author:
+    - '@rockpicado'
+
+  description: |-
+    한국어를 위한 라임 스키마
+
+  dependencies:
+    - handarin
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [ 한글, 영어 ]
+  - name: full_shape
+    reset: 0
+    states: [ 반각, 전각 ]
+  - name: ascii_punct
+    reset: 1
+    states: [ 。，, ．， ]
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - affix_segmentor@handarin
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - echo_translator
+    - punct_translator
+    - script_translator
+    - script_translator@handarin
+  filters:
+    - reverse_lookup_filter@hangul_reverse_lookup
+
+speller:
+  alphabet: zyxwvutsrqponmlkjihgfedcba QWERTOP
+  delimiter: " '"  # 격음부호로 「'」；최초의 공백은 자동삽입된 음절구분용
+  algebra: 
+    - 'abbrev/^([A-Za-z]).+$/$1/'
+
+translator:
+  dictionary: hangul     # 지구병음사전 자동번역자료
+  preedit_format:             # 이벌식코드를 한글로 표현
+    - "xlit|rsefaqtdwczxvgQWERT|ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎㅃㅉㄸㄲㅆ|"
+    - "xlit|yuiophjklbnmOP|ㅛㅕㅑㅐㅔㅗㅓㅏㅣㅠㅜㅡㅒㅖ|"
+    - "xform|ㅗㅏ|ㅘ|"
+    - "xform|ㅗㅐ|ㅙ|"
+    - "xform|ㅗㅣ|ㅚ|"
+    - "xform|ㅜㅓ|ㅝ|"
+    - "xform|ㅜㅔ|ㅞ|"
+    - "xform|ㅜㅣ|ㅟ|"
+    - "xform|ㅡㅣ|ㅢ|"
+  disable_user_dict_for_patterns:
+    - "^.*$"
+handarin:
+  tag: handarin
+  dictionary: handarin
+  prefix: "`"
+  suffix: ";"
+  tips: 〔漢字〕
+  preedit_format:
+    - "xlit|rsefaqtdwczxvgQWERT|ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎㅃㅉㄸㄲㅆ|"
+    - "xlit|yuiophjklbnmOP|ㅛㅕㅑㅐㅔㅗㅓㅏㅣㅠㅜㅡㅒㅖ|"
+    - "xform|ㅗㅏ|ㅘ|"
+    - "xform|ㅗㅐ|ㅙ|"
+    - "xform|ㅗㅣ|ㅚ|"
+    - "xform|ㅜㅓ|ㅝ|"
+    - "xform|ㅜㅔ|ㅞ|"
+    - "xform|ㅜㅣ|ㅟ|"
+    - "xform|ㅡㅣ|ㅢ|"
+
+handarin_reverse_lookup:
+  tags: [ handarin ]
+  overwrite_comment: true
+  dictionary: hangul.hanja
+  comment_format:
+    - "xform/$/〕/"
+    - "xform/^/〔/"
+    - "xlit|rsefaqtdwczxvgQWERT|ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎㅃㅉㄸㄲㅆ|"
+    - "xlit|yuiophjklbnmOP|ㅛㅕㅑㅐㅔㅗㅓㅏㅣㅠㅜㅡㅒㅖ|"
+
+punctuator:
+  import_preset: default
+key_binder:
+  import_preset: default
+  bindings:
+    - {accept: KP_Enter, send: confirm, when: has_menu}
+    - {accept: KP_Space, send: noop, when: has_menu}
+
+recognizer:
+  patterns:
+    uppercase: ""
+    punct: "^/([0-9]0?|[A-Za-z]+)$"
+    handarin: "^`[A-Za-z']*;?$"
+
+  import_preset: default
