@@ -1,13 +1,13 @@
 # Rime schema
 # encoding: utf-8
 #
-# Use Korean Hangul to Write Chinese Mandarin! 한국한자음으로 중국어를 입력하는 가장 간단한 Rime 수입방안
+# 한국어 Rime 입력기
 #
 
 schema:
   schema_id: hangul    # 이 ID가 파일명의 .schema.yaml 의 앞부분과 상동하도록 주의
   name: 도한글        # (방안메뉴) 안에 표시될 것
-  version: "0.9"        # 문자열에 음수아닌 정수나 소수. 예) "1.2.3"
+  version: "0.9.231123"        # 문자열에 음수아닌 정수나 소수. 예) "1.2.3"
   author:
     - '@rockpicado'
 
@@ -50,7 +50,7 @@ engine:
     - script_translator
     - script_translator@handarin
   filters:
-    - reverse_lookup_filter@hangul_reverse_lookup
+    - reverse_lookup_filter@handarin_reverse_lookup
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcba QWERTOP
@@ -70,8 +70,8 @@ translator:
     - "xform|ㅜㅔ|ㅞ|"
     - "xform|ㅜㅣ|ㅟ|"
     - "xform|ㅡㅣ|ㅢ|"
-  disable_user_dict_for_patterns:
-    - "^.*$"
+  enable_user_dict: false
+
 handarin:
   tag: handarin
   dictionary: handarin
@@ -103,9 +103,6 @@ punctuator:
   import_preset: default
 key_binder:
   import_preset: default
-  bindings:
-    - {accept: KP_Enter, send: confirm, when: has_menu}
-    - {accept: KP_Space, send: noop, when: has_menu}
 
 recognizer:
   patterns:
