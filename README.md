@@ -5,7 +5,7 @@
 [Rime](https://rime.im) 라임 다국어 입력기
 
 ## 데모 페이지 / Demo
-➡️ [Demo](https://my-rime-handarin.vercel.app/) ⬅️
+➡️ [Demo](https://my-rime-hangul.vercel.app/) ⬅️
 > GIF
 
 ## 설치 / Install
