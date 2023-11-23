@@ -99,6 +99,10 @@ handarin_reverse_lookup:
     - "xlit|rsefaqtdwczxvgQWERT|ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎㅃㅉㄸㄲㅆ|"
     - "xlit|yuiophjklbnmOP|ㅛㅕㅑㅐㅔㅗㅓㅏㅣㅠㅜㅡㅒㅖ|"
 
+ascii_composer:
+  switch_key:
+    Shift_L: noop
+    Shift_R: noop
 punctuator:
   import_preset: default
 key_binder:
