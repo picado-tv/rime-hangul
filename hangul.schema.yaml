@@ -7,7 +7,7 @@
 schema:
   schema_id: hangul    # 이 ID가 파일명의 .schema.yaml 의 앞부분과 상동하도록 주의
   name: 도한글        # (방안메뉴) 안에 표시될 것
-  version: "0.9.231123"        # 문자열에 음수아닌 정수나 소수. 예) "1.2.3"
+  version: "0.9.231123.1"        # 문자열에 음수아닌 정수나 소수. 예) "1.2.3"
   author:
     - '@rockpicado'
 
