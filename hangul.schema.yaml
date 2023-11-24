@@ -7,7 +7,7 @@
 schema:
   schema_id: hangul    # 이 ID가 파일명의 .schema.yaml 의 앞부분과 상동하도록 주의
   name: 도한글        # (방안메뉴) 안에 표시될 것
-  version: "0.9.231123.1"        # 문자열에 음수아닌 정수나 소수. 예) "1.2.3"
+  version: "0.9.231124"        # 문자열에 음수아닌 정수나 소수. 예) "1.2.3"
   author:
     - '@rockpicado'
 
@@ -56,7 +56,8 @@ speller:
   alphabet: zyxwvutsrqponmlkjihgfedcba QWERTOP
   delimiter: " '"  # 격음부호로 「'」；최초의 공백은 자동삽입된 음절구분용
   algebra: 
-    - 'abbrev/^([A-Za-z]).+$/$1/'
+    - 'abbrev/^([A-Za-z]).+$/$1/' #초성검색
+    - "abbrev/[rsefaqtdwczxvgQWERT]([yuiophjklbnmOP]+)$/$1/" #중성검색
 
 translator:
   dictionary: hangul     # 지구병음사전 자동번역자료
