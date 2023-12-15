@@ -6,7 +6,7 @@
 
 ## 데모 페이지 / Demo
 ➡️ [Demo](https://my-rime-hangul.vercel.app/) ⬅️
-> GIF
+> https://www.youtube.com/watch?v=_I70yIQ0CIs
 
 ## 설치 / Install
 [Plum](https://github.com/rime/plum) 명령어: `bash rime-install picado-tv/rime-hangul`
