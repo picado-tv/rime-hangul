@@ -7,7 +7,7 @@
 schema:
   schema_id: hangul    # 이 ID가 파일명의 .schema.yaml 의 앞부분과 상동하도록 주의
   name: 도한글        # (방안메뉴) 안에 표시될 것
-  version: "0.9.231124"        # 문자열에 음수아닌 정수나 소수. 예) "1.2.3"
+  version: "1.0.231215"        # 문자열에 음수아닌 정수나 소수. 예) "1.2.3"
   author:
     - '@rockpicado'
 
@@ -50,7 +50,7 @@ engine:
     - script_translator
     - script_translator@handarin
   filters:
-    - reverse_lookup_filter@handarin_reverse_lookup
+    - reverse_lookup_filter@hangul_reverse_lookup
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcba QWERTOP
@@ -89,16 +89,24 @@ handarin:
     - "xform|ㅜㅔ|ㅞ|"
     - "xform|ㅜㅣ|ㅟ|"
     - "xform|ㅡㅣ|ㅢ|"
+    - "xlit|NMJKL|乙一丿丶丨|"
 
-handarin_reverse_lookup:
+hangul_reverse_lookup:
   tags: [ handarin ]
   overwrite_comment: true
-  dictionary: hangul.hanja
+  dictionary: hangul
   comment_format:
     - "xform/$/〕/"
     - "xform/^/〔/"
     - "xlit|rsefaqtdwczxvgQWERT|ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎㅃㅉㄸㄲㅆ|"
     - "xlit|yuiophjklbnmOP|ㅛㅕㅑㅐㅔㅗㅓㅏㅣㅠㅜㅡㅒㅖ|"
+    - "xform|ㅗㅏ|ㅘ|"
+    - "xform|ㅗㅐ|ㅙ|"
+    - "xform|ㅗㅣ|ㅚ|"
+    - "xform|ㅜㅓ|ㅝ|"
+    - "xform|ㅜㅔ|ㅞ|"
+    - "xform|ㅜㅣ|ㅟ|"
+    - "xform|ㅡㅣ|ㅢ|"
 
 ascii_composer:
   switch_key:
