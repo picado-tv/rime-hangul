@@ -7,7 +7,7 @@
 schema:
   schema_id: hangul    # 이 ID가 파일명의 .schema.yaml 의 앞부분과 상동하도록 주의
   name: 도한글        # (방안메뉴) 안에 표시될 것
-  version: "1.0.231215"        # 문자열에 음수아닌 정수나 소수. 예) "1.2.3"
+  version: "1.0.231217"        # 문자열에 음수아닌 정수나 소수. 예) "1.2.3"
   author:
     - '@rockpicado'
 
@@ -40,7 +40,7 @@ engine:
   segmentors:
     - ascii_segmentor
     - matcher
-    - affix_segmentor@handarin
+    - affix_segmentor@handarin_as_table
     - abc_segmentor
     - punct_segmentor
     - fallback_segmentor
@@ -48,15 +48,13 @@ engine:
     - echo_translator
     - punct_translator
     - script_translator
-    - script_translator@handarin
-  filters:
-    - reverse_lookup_filter@hangul_reverse_lookup
+    - table_translator@handarin_as_table
 
 speller:
-  alphabet: zyxwvutsrqponmlkjihgfedcba QWERTOP
+  alphabet: zyxwvutsrqponmlkjihgfedcba QWERTOPNMJKL
   delimiter: " '"  # 격음부호로 「'」；최초의 공백은 자동삽입된 음절구분용
   algebra: 
-    - 'abbrev/^([A-Za-z]).+$/$1/' #초성검색
+    - 'abbrev/^([QWERTqwertasdfgzxcv]).+$/$1/' #초성검색
     - "abbrev/[rsefaqtdwczxvgQWERT]([yuiophjklbnmOP]+)$/$1/" #중성검색
 
 translator:
@@ -71,15 +69,17 @@ translator:
     - "xform|ㅜㅔ|ㅞ|"
     - "xform|ㅜㅣ|ㅟ|"
     - "xform|ㅡㅣ|ㅢ|"
+    - "xlit|NMJKL|乙一丿丶丨|"
   enable_user_dict: false
-
-handarin:
+handarin_as_table:
   tag: handarin
   dictionary: handarin
+  enable_sentence: false
   prefix: "`"
   suffix: ";"
   tips: 〔漢字〕
   preedit_format:
+    - xform/^([nmjkl]+)/\U$1/
     - "xlit|rsefaqtdwczxvgQWERT|ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎㅃㅉㄸㄲㅆ|"
     - "xlit|yuiophjklbnmOP|ㅛㅕㅑㅐㅔㅗㅓㅏㅣㅠㅜㅡㅒㅖ|"
     - "xform|ㅗㅏ|ㅘ|"
@@ -89,24 +89,100 @@ handarin:
     - "xform|ㅜㅔ|ㅞ|"
     - "xform|ㅜㅣ|ㅟ|"
     - "xform|ㅡㅣ|ㅢ|"
-    - "xlit|NMJKL|乙一丿丶丨|"
+    - "xform/JKMLNMLNMLNMLNMLL/龠"
+    - "xform/JNLNMMLNNNMNMMJK/龜"
+    - "xform/JLNMMLNNMMNMMNJKM/龜"
+    - "xform/KMKJMJNKKMNMNMMM/龍"
+    - "xform/KMKJMLNMMMNMNMMM/龍"
+    - "xform/LMLMJKJKMJKJKNL/齒"
+    - "xform/KMKJLNJJNKJLMM/齊"
+    - "xform/JLNMMMLNMLMMJL/鼻"
+    - "xform/JLMNMMNMMNMMN/鼠"
+    - "xform/JLMNMMNKKNKKN/鼠"
+    - "xform/MLMLNMKJMMLNK/鼓"
+    - "xform/LNMMMNLMJLMLN/鼎"
+    - "xform/LNMMMNMJLMLN/鼎"
+    - "xform/LNMMLNMLMMNMM/黽"
+    - "xform/LLKJMJKLNNJK/黹"
+    - "xform/LLKJMKJLNLJK/黹"
+    - "xform/LNKJMMLMKKKK/黑"
+    - "xform/LNKJMLMMKKKK/黑"
+    - "xform/JMLJKJKNKKJK/黍"
+    - "xform/JMLJKJKLKMJK/黍"
+    - "xform/MLLMMLNMLMJK/黃"
+    - "xform/KMJMLJNMLJN/麻"
+    - "xform/KMJMLJKMLJK/麻"
+    - "xform/MLJKJKJKJNK/麥"
+    - "xform/KMJNLLMMNMN/鹿"
+    - "xform/KMJNLLMMNJN/鹿"
+    - "xform/JLNMMMNKKKK/鹵"
+    - "xform/JNLNMLMKKKK/魚"
+    - "xform/JLNMLMJNNK/鬼"
+    - "xform/JLNMMJNNK/鬼"
+    - "xform/MLNMLNKJML/鬲"
+    - "xform/JKKKKKNLMN/鬯"
+    - "xform/JKKKKKNLJN/鬯"
+    - "xform/LMMLMMMLMN/鬥"
+    - "xform/LMMLMMMLML/鬥"
+    - "xform/LMMMMNKJJJ/髟"
+    - "xform/MLMMMNKJJJ/髟"
+    - "xform/KMLNMLNLNM/高"
+    - "xform/LNMLKNJNKK/骨"
+    - "xform/LNNKNLNMM/骨"
+    - "xform/LMMMLNKKKK/馬"
+    - "xform/MLMMLNKKKK/馬"
+    - "xform/JMLJKLNMM/香"
+    - "xform/KJMJLNMMM/首"
+    - "xform/JKMNMMNJK/食"
+    - "xform/JKKNMMNJK/食"
+    - "xform/NJKJJNJKL/飛"
+    - "xform/NJKJNJKJL/飛"
+    - "xform/JNMLNMLMK/風"
+    - "xform/JNJLNMLMK/風"
+    - "xform/MJLNMMMJK/頁"
+    - "xform/KMKJMLNMM/音"
+    - "xform/LMMMLMMMM/韭"
+    - "xform/NLMLNMMNL/韋"
+    - "xform/MLLMLNMML/革"
+    - "xform/JMMMLMMM/非"
+    - "xform/LMMMLMMM/非"
+    - "xform/MMLMJNLM/靑"
+    - "xform/MMLMLNLM/靑"
+    - "xform/MLNLKKJK/雨"
+    - "xform/MLNLKKKK/雨"
+    - "xform/JLKMMMLM/隹"
+    - "xform/NMMNKKJK/隶"
+    - "xform/NMMLKMJK/隶"
+    - "xform/JLNMNMML/阜"
+    - "xform/LNMMLNMM/門"
+    - "xform/LMMMMNJK/長"
+    - "xform/MLMMMNJK/長"
+    - "xform/JKMMLKJM/金"
+    - "xform/LNMMMLM/里"
+    - "xform/LNMMLMM/里"
+    - "xform/JKJMLJK/釆"
+    - "xform/MLNJNMM/酉"
+    - "xform/LNMNLMN/邑"
+    - "xform/JJJLMJK/辵"
+    - "xform/MJMMNJK/辰"
+    - "xform/KMKJMML/辛"
+    - "xform/MLNMMML/車"
+    - "xform/JLNMMMJ/身"
+    - "xform/LNMLMJK/足"
+    - "xform/MLMLMJK/走"
+    - "xform/MLMJNJK/赤"
+    - "xform/MLMJLJK/赤"
+    - "xform/LNMMMJK/貝"
+    - "xform/JKKJNJJ/豸"
+    - "xform/MJNJJJK/豕"
+    - "xform/MLNMKJM/豆"
+    - "xform/JKJKLNM/谷"
+    - "xform/KMMMLNM/言"
+    - "xform/JNJNMLM/角"
+    - "xform/JNJNMML/角"
+    - "xform/LNMMMJN/見"
 
-hangul_reverse_lookup:
-  tags: [ handarin ]
-  overwrite_comment: true
-  dictionary: hangul
-  comment_format:
-    - "xform/$/〕/"
-    - "xform/^/〔/"
-    - "xlit|rsefaqtdwczxvgQWERT|ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎㅃㅉㄸㄲㅆ|"
-    - "xlit|yuiophjklbnmOP|ㅛㅕㅑㅐㅔㅗㅓㅏㅣㅠㅜㅡㅒㅖ|"
-    - "xform|ㅗㅏ|ㅘ|"
-    - "xform|ㅗㅐ|ㅙ|"
-    - "xform|ㅗㅣ|ㅚ|"
-    - "xform|ㅜㅓ|ㅝ|"
-    - "xform|ㅜㅔ|ㅞ|"
-    - "xform|ㅜㅣ|ㅟ|"
-    - "xform|ㅡㅣ|ㅢ|"
+    - "xlit|NMJKL|乙一丿丶丨|"
 
 ascii_composer:
   switch_key:
