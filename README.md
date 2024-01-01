@@ -11,6 +11,18 @@
 ## 설치 / Install
 [Plum](https://github.com/rime/plum) 명령어: `bash rime-install picado-tv/rime-hangul`
 
+### 윈도우 / Windows (Weasel 小狼毫)
+* [윈도우용 RIME 설치]([Install RIME on Windows](https://github.com/rime/weasel/releases))
+* RIME (小狼毫)로 전환, "中" 아이콘에 우클릭, "輸入法設定" (IME 설정) 클릭
+* "獲取更多輸入方案" (더 많은 IME 획득하기) 클릭. `picado-tv/rime-handarin`, `picado-tv/rime-hangul` 입력 후 엔터
+* "도한글" 선택하고 "中" (확인) 두번 클릭
+* <kbd>Ctrl+\`</kbd> 또는 <kbd>F4</kbd>를 눌러서 "도한글"으로 전환
+
+### 안드로이드 / Android (TRIME 同文輸入法)
+* [안드로이드용 RIME 설치](https://github.com/osfans/trime/releases) 후 안드로이드 설정에서 활성화.
+* `hangul.schema.yaml`, `hangul.dict.yaml`, `handarin.schema.yaml`, `handarin.dict.yaml`, `hanja.stroke.dict.yaml`을 TRIME 유저 폴더에 저장 (/sdcard/rime as default).
+* TRIME 실행, 스키마 활성화 
+
 ## 특징 / Features
 1. 두벌식 키보드 👐
 2. 국한문혼용 🇰🇷
