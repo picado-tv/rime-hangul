@@ -14,7 +14,7 @@
 ### 윈도우 / Windows (Weasel 小狼毫)
 * [윈도우용 RIME 설치]([Install RIME on Windows](https://github.com/rime/weasel/releases))
 * RIME (小狼毫)로 전환, "中" 아이콘에 우클릭, "輸入法設定" (IME 설정) 클릭
-* "獲取更多輸入方案" (더 많은 IME 획득하기) 클릭. `rime-handarin`, `rime-hangul` 입력 후 엔터
+* "獲取更多輸入方案" (더 많은 IME 획득하기) 클릭. `rime-handarin` 입력 후 엔터, `rime-hangul` 입력 후 엔터
 * "도한글" 선택하고 "中" (확인) 두번 클릭
 * <kbd>Ctrl+\`</kbd> 또는 <kbd>F4</kbd>를 눌러서 "도한글"으로 전환
 
