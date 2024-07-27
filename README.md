@@ -21,7 +21,10 @@
 ### 안드로이드 / Android (TRIME 同文輸入法)
 * [안드로이드용 RIME 설치](https://github.com/osfans/trime/releases) 후 안드로이드 설정에서 활성화.
 * `hangul.schema.yaml`, `hangul.dict.yaml`, `hanja.hangul.dict.yaml`, `hanja.stroke.dict.yaml`, `handarin.schema.yaml`, `handarin.dict.yaml`을 TRIME 유저 폴더에 저장 (기본 `/sdcard/rime`).
-* TRIME 실행, 스키마 활성화 
+* TRIME 실행, 스키마 활성화
+
+### 아이폰 / iOS
+_개발중_
 
 ## 특징 / Features
 1. 두벌식 키보드 👐
